@@ -11,7 +11,10 @@ def fetch_github_releases(feed) -> List[Item]:
     releases = r.json()
     items = []
     for rel in releases[:10]:
-        published_str = rel.get("published_at", datetime.datetime.utcnow().isoformat() + "Z")
+        published_str = rel.get(
+            "published_at",
+            datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+        )
         try:
             published_dt = dateutil.parser.isoparse(published_str)
         except ValueError:

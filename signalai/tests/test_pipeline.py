@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 from signalai.pipeline import ingest, ranker, formatter
 from signalai.config import StyleConfig, FormatterConfig
@@ -19,7 +19,7 @@ def test_ingest_run_adds_new_items(tmp_path, monkeypatch, sample_feed_config):
                 title="Test",
                 url="https://example.com/post?ref=1",
                 summary="Summary",
-                published=datetime.utcnow(),
+                published=datetime.now(timezone.utc),
                 tags=[],
                 source="rss",
                 domain="example.com",

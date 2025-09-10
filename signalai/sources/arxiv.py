@@ -9,7 +9,10 @@ def fetch_arxiv(feed) -> List[Item]:
     parsed = feedparser.parse(feed["url"])
     items = []
     for entry in parsed.entries:
-        published_str = entry.get("published", datetime.datetime.utcnow().isoformat() + "Z")
+        published_str = entry.get(
+            "published",
+            datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+        )
         try:
             published_dt = dateutil.parser.isoparse(published_str)
         except ValueError:
