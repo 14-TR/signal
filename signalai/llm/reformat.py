@@ -1,6 +1,4 @@
-import os
-import requests
-from typing import List, Dict
+from typing import List
 import json
 from ..models import Item
 from .client import LLMClient
