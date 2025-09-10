@@ -2,7 +2,7 @@ from datetime import date, datetime
 from typing import List, Optional, Tuple, Dict
 import dateutil.parser
 
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 
 class Item(BaseModel):
@@ -16,7 +16,7 @@ class Item(BaseModel):
     domain: str
     signal: Optional[float] = None
 
-    @validator("published", pre=True)
+    @field_validator("published", mode="before")
     def parse_published(cls, v):
         if isinstance(v, str):
             return dateutil.parser.parse(v)
