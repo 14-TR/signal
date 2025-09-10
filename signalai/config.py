@@ -9,6 +9,7 @@ class StyleConfig(BaseModel):
     section_sep: str = "---"
     require_summaries: bool = True
     max_top_signals: int = 14
+    per_domain_cap: int = 3
 
 class FormatterConfig(BaseModel):
     enable: bool = True

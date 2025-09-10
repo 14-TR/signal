@@ -43,7 +43,11 @@ def main():
 
     ranked_items = sorted(all_items, key=lambda x: (x.signal, x.published), reverse=True)
 
-    top_k = ranker.select(ranked_items, args.k, 3) # per_domain_cap should be in config
+    top_k = ranker.select(
+        ranked_items,
+        args.k,
+        settings.style.per_domain_cap,
+    )
 
     detected_themes = theme.detect(top_k)
 
