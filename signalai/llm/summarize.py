@@ -1,10 +1,6 @@
-import os
-import requests
-from typing import Dict, Any, List, Tuple
+from typing import List, Tuple
 from ..models import Item
 from .client import LLMClient
-# TODO: Will need to import domain_of from io.helpers
-# TODO: Will need to be updated to use llm.client
 
 def summarize_item_llm(item: Item, client: LLMClient) -> str:
     title = (item.title or "").strip()
