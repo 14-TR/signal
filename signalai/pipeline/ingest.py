@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from signalai.logging import get_logger
 
 from signalai.io.helpers import canonicalize_url, sha1_of, domain_of
-from signalai.io.storage import load_json, save_json
+from signalai.io.storage import load, save
 from signalai.models import Item
 from signalai.sources.arxiv import fetch_arxiv
 from signalai.sources.github import fetch_github_releases
@@ -40,8 +40,8 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
     Loads feeds, fetches new items, dedupes, and updates the store.
     Returns the full store of items and the list of new items.
     """
-    feeds = load_json(feeds_path, [])
-    store_data = load_json(store_path, [])
+    feeds = load(feeds_path, [])
+    store_data = load(store_path, [])
 
     # Backfill domain for old items
     for d in store_data:
@@ -66,6 +66,6 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
                     seen_hashes.add(h)
 
     store_items.extend(new_items)
-    save_json(store_path, [item.model_dump() for item in store_items])
+    save(store_path, [item.model_dump() for item in store_items])
 
     return store_items, new_items
