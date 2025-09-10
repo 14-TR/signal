@@ -1,5 +1,6 @@
 from pathlib import Path
 from typing import List, Tuple
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from signalai.logging import get_logger
 
@@ -20,6 +21,20 @@ FETCHERS = {
 }
 
 
+def _fetch_feed(feed):
+    """Helper to fetch a single feed with error handling."""
+    ftype = feed.get("type")
+    fetcher = FETCHERS.get(ftype)
+    if not fetcher:
+        logger.warning("Unknown feed type: %s", ftype)
+        return []
+    try:
+        return fetcher(feed)
+    except Exception as e:
+        logger.error("Fetch error for %s: %s", feed.get("name", ftype), e)
+        return []
+
+
 def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
     """
     Loads feeds, fetches new items, dedupes, and updates the store.
@@ -37,26 +52,18 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
     seen_hashes = {item.hash for item in store_items if item.hash}
 
     new_items: List[Item] = []
-    for feed in feeds:
-        ftype = feed.get("type")
-        fetcher = FETCHERS.get(ftype)
-        if not fetcher:
-            logger.warning("Unknown feed type: %s", ftype)
-            continue
-        try:
-            entries = fetcher(feed)
-        except Exception as e:
-            logger.error("Fetch error for %s: %s", feed["name"], e)
-            continue
-
-        for item in entries:
-            url = canonicalize_url(item.url)
-            h = sha1_of(url)
-            item.hash = h
-            item.url = url
-            if h not in seen_hashes:
-                new_items.append(item)
-                seen_hashes.add(h)
+    with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(_fetch_feed, feed) for feed in feeds]
+        for future in as_completed(futures):
+            entries = future.result()
+            for item in entries:
+                url = canonicalize_url(item.url)
+                h = sha1_of(url)
+                item.hash = h
+                item.url = url
+                if h not in seen_hashes:
+                    new_items.append(item)
+                    seen_hashes.add(h)
 
     store_items.extend(new_items)
     save_json(store_path, [item.model_dump() for item in store_items])
