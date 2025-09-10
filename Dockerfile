@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy app
-COPY signalai.py ./signalai.py
+COPY signalai/ ./signalai/
 
 # Default command expects mounted volumes for config, store, and outputs
-ENTRYPOINT ["python", "signalai.py"]
+ENTRYPOINT ["python", "-m", "signalai.cli"]
