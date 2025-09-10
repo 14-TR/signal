@@ -1,9 +1,14 @@
 from pydantic import BaseModel
-from typing import List
+from typing import Dict, List
 
 class StyleConfig(BaseModel):
     wrap_col: int = 100
     grouping: List[str] = ["Research", "Industry", "Open Source", "Commentary"]
+    domain_groups: Dict[str, List[str]] = {
+        "Research": ["arxiv.org", "research.google", "openreview.net"],
+        "Industry": ["openai.com", "anthropic.com", "meta.ai", "google.ai"],
+        "Open Source": ["github.com"],
+    }
     summary_min_words: int = 12
     summary_max_words: int = 38
     section_sep: str = "---"
