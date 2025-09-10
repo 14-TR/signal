@@ -59,6 +59,6 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
                 seen_hashes.add(h)
 
     store_items.extend(new_items)
-    save_json(store_path, [item.dict() for item in store_items])
+    save_json(store_path, [item.model_dump() for item in store_items])
 
     return store_items, new_items
