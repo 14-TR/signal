@@ -52,3 +52,14 @@ def test_formatter_beautify_without_llm(sample_draft, expected_markdown):
     assert "### Industry" in result.markdown
     assert "- Agent evaluation results [OpenAI]" in result.markdown
     assert "## Predicted Impacts" in result.markdown
+
+
+def test_formatter_respects_domain_mapping(sample_draft, expected_markdown):
+    cfg = StyleConfig(domain_groups={"Research": ["openai.com"]})
+    formatter_cfg = FormatterConfig(enable=False)
+
+    result = formatter.beautify(sample_draft, cfg, formatter_cfg, client=None)
+
+    assert expected_markdown in result.markdown
+    assert "### Research" in result.markdown
+    assert "### Industry" not in result.markdown

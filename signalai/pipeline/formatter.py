@@ -16,19 +16,22 @@ from ..io.helpers import site_label
 
 logger = get_logger(__name__)
 
-def _group_items(items: List[Item]) -> Dict[str, List[Item]]:
+
+def _group_items(
+    items: List[Item], domain_groups: Dict[str, List[str]], default_group: str = "Commentary"
+) -> Dict[str, List[Item]]:
     """Groups items into categories based on domain rules."""
     groups = defaultdict(list)
     for item in items:
         domain = item.domain
-        if any(d in domain for d in ["arxiv.org", "research.google", "openreview.net"]):
-            groups["Research"].append(item)
-        elif any(d in domain for d in ["openai.com", "anthropic.com", "meta.ai", "google.ai"]):
-            groups["Industry"].append(item)
-        elif "github.com" in domain:
-            groups["Open Source"].append(item)
-        else:
-            groups["Commentary"].append(item)
+        matched = False
+        for group_name, domains in domain_groups.items():
+            if any(d in domain for d in domains):
+                groups[group_name].append(item)
+                matched = True
+                break
+        if not matched:
+            groups[default_group].append(item)
     return groups
 
 def _pre_lint(draft: IssueDraft, cfg: StyleConfig) -> Tuple[str, List[Dict[str,str]]]:
@@ -37,7 +40,7 @@ def _pre_lint(draft: IssueDraft, cfg: StyleConfig) -> Tuple[str, List[Dict[str,s
     lines.append(f"# Signal.ai — {draft.date.isoformat()}\n")
     lines.append("## Top Signals")
 
-    grouped_items = _group_items(draft.top_signals)
+    grouped_items = _group_items(draft.top_signals, cfg.domain_groups)
     summary_map = {bullet[0].hash: bullet[1] for bullet in draft.bullets}
 
     for group_name in cfg.grouping:
