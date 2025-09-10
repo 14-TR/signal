@@ -2,6 +2,11 @@ import os
 import requests
 from typing import List, Dict
 
+from signalai.logging import get_logger
+
+
+logger = get_logger(__name__)
+
 class LLMClient:
     def __init__(self, model: str, temperature: float, max_completion_tokens: int, timeout: int):
         self.api_key = os.getenv("OPENAI_API_KEY", "").strip()
@@ -17,7 +22,7 @@ class LLMClient:
         Returns the content of the response, or an empty string on failure.
         """
         if not self.api_key:
-            print("Error: OPENAI_API_KEY not set.") # Use proper logging
+            logger.error("OPENAI_API_KEY not set.")
             return ""
 
         payload = {
@@ -42,9 +47,9 @@ class LLMClient:
             content = data.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
             return content
         except requests.exceptions.HTTPError as http_err:
-            print(f"LLM request failed: {http_err}")
-            print(f"API Response Body: {resp.text}") # Added for debugging
+            logger.error("LLM request failed: %s", http_err)
+            logger.error("API Response Body: %s", resp.text)
             return ""
         except Exception as e:
-            print(f"LLM request failed with unexpected error: {e}") # Use proper logging
+            logger.error("LLM request failed with unexpected error: %s", e)
             return ""

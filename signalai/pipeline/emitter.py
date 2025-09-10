@@ -1,6 +1,11 @@
 from pathlib import Path
 from datetime import date
+
+from signalai.logging import get_logger
 from signalai.models import IssueFinal
+
+
+logger = get_logger(__name__)
 
 def write(issue: IssueFinal, out_dir: Path):
     today = date.today().isoformat()
@@ -9,5 +14,5 @@ def write(issue: IssueFinal, out_dir: Path):
 
     with open(mdpath, "w", encoding="utf-8") as f:
         f.write(issue.markdown)
-    
-    print(f"Wrote newsletter to {mdpath} with {issue.word_count} words.")
+
+    logger.info("Wrote newsletter to %s with %d words.", mdpath, issue.word_count)

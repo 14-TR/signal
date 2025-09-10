@@ -4,12 +4,17 @@ from collections import defaultdict
 import html
 import re
 
+from signalai.logging import get_logger
+
 from ..models import IssueDraft, IssueFinal, Item
 from ..config import StyleConfig, FormatterConfig
 from ..llm.client import LLMClient
 from ..llm import reformat as llm_reformat
 from . import validators
 from ..io.helpers import site_label
+
+
+logger = get_logger(__name__)
 
 def _group_items(items: List[Item]) -> Dict[str, List[Item]]:
     """Groups items into categories based on domain rules."""
@@ -98,9 +103,9 @@ def beautify(
         if is_valid:
             final_markdown = polished_markdown
         else:
-            print("LLM output validation failed. Falling back to pre-linted version.")
+            logger.warning("LLM output validation failed. Falling back to pre-linted version.")
             for err in errors:
-                print(f"- {err}") # Use proper logging
+                logger.warning("- %s", err)
             final_markdown = pre_linted_md
     else:
         final_markdown = pre_linted_md
