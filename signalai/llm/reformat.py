@@ -1,5 +1,6 @@
 from typing import List
 import json
+
 from ..models import Item
 from .client import LLMClient
 from ..config import StyleConfig
