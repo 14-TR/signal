@@ -9,7 +9,14 @@ def score(item: Item) -> float:
     # Novelty: 1 within 72h, linear decay to 0 by 7 days
     novelty = 0.5
     try:
-        age_days = max(0.0, (datetime.datetime.utcnow() - item.published).total_seconds() / 86400.0)
+        age_days = max(
+            0.0,
+            (
+                datetime.datetime.now(datetime.timezone.utc)
+                - item.published
+            ).total_seconds()
+            / 86400.0,
+        )
         if age_days <= 3:
             novelty = 1.0
         elif age_days <= 7:

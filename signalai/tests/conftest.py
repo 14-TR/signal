@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 
 import pytest
 
@@ -11,7 +11,7 @@ def sample_item():
         title="Agent evaluation results",
         url="https://openai.com/blog/agents",
         summary="New agent evaluation method",
-        published=datetime.utcnow(),
+        published=datetime.now(timezone.utc),
         tags=[],
         source="rss",
         domain="openai.com",
