@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List, Tuple
-import sys
+
+from signalai.logging import get_logger
 
 from signalai.io.helpers import canonicalize_url, sha1_of, domain_of
 from signalai.io.storage import load_json, save_json
@@ -8,6 +9,9 @@ from signalai.models import Item
 from signalai.sources.arxiv import fetch_arxiv
 from signalai.sources.github import fetch_github_releases
 from signalai.sources.rss import fetch_rss
+
+
+logger = get_logger(__name__)
 
 FETCHERS = {
     "rss": fetch_rss,
@@ -37,12 +41,12 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
         ftype = feed.get("type")
         fetcher = FETCHERS.get(ftype)
         if not fetcher:
-            print(f"Unknown feed type: {ftype}", file=sys.stderr)
+            logger.warning("Unknown feed type: %s", ftype)
             continue
         try:
             entries = fetcher(feed)
         except Exception as e:
-            print(f"Fetch error for {feed['name']}: {e}", file=sys.stderr)
+            logger.error("Fetch error for %s: %s", feed["name"], e)
             continue
 
         for item in entries:
