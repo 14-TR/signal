@@ -47,7 +47,7 @@ def main():
 
     detected_themes = theme.detect(top_k)
 
-    bullets = summarize.top_bullets(top_k, args.llm_summaries, client)
+    bullets = summarize.top_bullets(top_k, args.llm_summaries, client, settings.style)
 
     impacts_md = ""
     if args.llm_impacts:
