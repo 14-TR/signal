@@ -51,6 +51,34 @@ export OPENAI_API_KEY=... \
 
 Runtime configuration lives in `signalai/config.py`. Default `StyleConfig` options include line wrapping, section grouping, summary length bounds, and maximum number of signals. `FormatterConfig` toggles LLM formatting and controls model, temperature, token limits, and timeout. Set the `SIGNALAI_LLM_MODEL` environment variable to override the LLM model at runtime.
 
+## Source plugins
+
+Custom feed sources implement the `Source` interface defined in `signalai/sources/base.py`. A source provides `fetch` and `parse` methods and may optionally override `dedupe`.
+
+Use the `register` decorator so your plugin is available through the registry:
+
+```python
+from signalai.sources import Source, register
+
+@register
+class MySource(Source):
+    NAME = "my_source"
+
+    def fetch(self, feed_cfg):
+        ...
+
+    def parse(self, raw, feed_cfg):
+        ...
+```
+
+Plugins can be discovered dynamically either via entry points named `signalai.sources` or by passing dotted paths to `load_plugins`:
+
+```python
+from signalai.sources import load_plugins
+
+load_plugins(["path.to.module:MySource"])
+```
+
 ## Documentation
 
 See the [Stage‑1 engineering spec](docs/signal-spec-stage-1.md), [reviewer agent spec](docs/reviewer-agent-spec.md), and [status synopsis](docs/status-synopsis.md) for deeper context and design details.

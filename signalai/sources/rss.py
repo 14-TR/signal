@@ -1,20 +1,32 @@
 import feedparser
-from typing import List
+from typing import Any, Dict, List
+
 from signalai.models import Item
+
+from . import register
+from .base import Source
 from .utils import create_item
 
-def fetch_rss(feed) -> List[Item]:
-    parsed = feedparser.parse(feed["url"])
-    items: List[Item] = []
-    for entry in parsed.entries:
-        items.append(
-            create_item(
-                title=entry.get("title", ""),
-                url=entry.get("link", ""),
-                summary=entry.get("summary", ""),
-                published=entry.get("published"),
-                tags=[],
-                source=feed["name"],
+
+@register
+class RSSSource(Source):
+    NAME = "rss"
+
+    def fetch(self, feed_cfg: Dict[str, Any]) -> Any:
+        return feedparser.parse(feed_cfg["url"])
+
+    def parse(self, parsed: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
+        items: List[Item] = []
+        for entry in parsed.entries:
+            items.append(
+                create_item(
+                    title=entry.get("title", ""),
+                    url=entry.get("link", ""),
+                    summary=entry.get("summary", ""),
+                    published=entry.get("published"),
+                    tags=[],
+                    source=feed_cfg["name"],
+                )
             )
-        )
-    return items
+        return items
+
