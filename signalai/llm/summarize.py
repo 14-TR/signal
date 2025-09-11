@@ -2,9 +2,17 @@ from typing import List, Tuple
 
 from ..models import Item
 from ..config import StyleConfig
-from .client import LLMClient
+from .provider import LLMProvider, FallbackProvider
+from .cache import LLMCache
 
-def summarize_item_llm(item: Item, client: LLMClient, cfg: StyleConfig) -> str:
+def summarize_item_llm(
+    item: Item,
+    provider: LLMProvider,
+    cfg: StyleConfig,
+    *,
+    cache: LLMCache | None = None,
+    fallback: LLMProvider | None = None,
+) -> str:
     title = (item.title or "").strip()
     src = item.source
     url = item.url
@@ -23,7 +31,12 @@ def summarize_item_llm(item: Item, client: LLMClient, cfg: StyleConfig) -> str:
         {"role": "user", "content": user_msg},
     ]
     
-    content = client.chat(messages)
+    if fallback:
+        provider = FallbackProvider([provider, fallback], cache=cache, retries=2)
+    elif cache:
+        provider = FallbackProvider([provider], cache=cache, retries=2)
+
+    content = provider.chat(messages)
 
     # Post-process to enforce word count, since LLM may ignore it
     content = " ".join(content.split())
@@ -33,7 +46,13 @@ def summarize_item_llm(item: Item, client: LLMClient, cfg: StyleConfig) -> str:
     return content
 
 def top_bullets(
-    items: List[Item], use_llm: bool, client: LLMClient, cfg: StyleConfig
+    items: List[Item],
+    use_llm: bool,
+    client: LLMProvider,
+    cfg: StyleConfig,
+    *,
+    cache: LLMCache | None = None,
+    fallback: LLMProvider | None = None,
 ) -> List[Tuple[Item, str]]:
     bullets = []
     for it in items:
@@ -44,7 +63,9 @@ def top_bullets(
         if cfg.summary_min_words <= wc <= cfg.summary_max_words:
             summary_line = feed_sum
         elif use_llm:
-            summary_line = summarize_item_llm(it, client, cfg)
+            summary_line = summarize_item_llm(
+                it, client, cfg, cache=cache, fallback=fallback
+            )
 
         bullets.append((it, summary_line))
     return bullets

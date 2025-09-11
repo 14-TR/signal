@@ -2,14 +2,18 @@ from typing import List
 import json
 
 from ..models import Item
-from .client import LLMClient
+from .provider import LLMProvider, FallbackProvider
+from .cache import LLMCache
 from ..config import StyleConfig
 
 def run(
     markdown_draft: str,
     original_items: List[Item],
-    client: LLMClient,
-    cfg: StyleConfig
+    provider: LLMProvider,
+    cfg: StyleConfig,
+    *,
+    cache: LLMCache | None = None,
+    fallback: LLMProvider | None = None,
 ) -> str:
     """Uses an LLM to polish the wording and style of a draft newsletter."""
 
@@ -46,6 +50,11 @@ def run(
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt},
     ]
-    
-    content = client.chat(messages)
+
+    if fallback:
+        provider = FallbackProvider([provider, fallback], cache=cache, retries=2)
+    elif cache:
+        provider = FallbackProvider([provider], cache=cache, retries=2)
+
+    content = provider.chat(messages)
     return content if content else markdown_draft
