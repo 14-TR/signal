@@ -18,7 +18,7 @@ pip install -r requirements.txt
 Run the CLI module with paths to your feeds, store, and output dir:
 
 ```bash
-python -m signalai.cli --feeds feeds.json --store sources.json --out out/ --k 10
+python -m signalai.cli run --feeds feeds.json --store sources.json --out out/ --k 10
 ```
 
 Optional flags:
@@ -36,7 +36,7 @@ Optional flags:
 ```bash
 export OPENAI_API_KEY=... \
 && export SIGNALAI_LLM_MODEL=gpt-5-mini \
-&& python -m signalai.cli \
+&& python -m signalai.cli run \
   --feeds feeds.json \
   --store sources.json \
   --out out/ \
@@ -49,7 +49,7 @@ export OPENAI_API_KEY=... \
 
 ## Configuration
 
-Runtime configuration lives in `signalai/config.py`. Default `StyleConfig` options include line wrapping, section grouping, summary length bounds, and maximum number of signals. `FormatterConfig` toggles LLM formatting and controls model, temperature, token limits, and timeout. Set the `SIGNALAI_LLM_MODEL` environment variable to override the LLM model at runtime.
+Settings are stored in `signalai/config.toml` and parsed at runtime by Pydantic models defined in `signalai/config.py`. Edit the file directly or run `python -m signalai.cli config` to open it in your `$EDITOR` and validate changes. Default `StyleConfig` options include line wrapping, section grouping, summary length bounds, and maximum number of signals. `FormatterConfig` toggles LLM formatting and controls model, temperature, token limits, and timeout. Set the `SIGNALAI_LLM_MODEL` environment variable to override the LLM model at runtime.
 
 ## Source plugins
 

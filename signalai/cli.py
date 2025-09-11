@@ -1,8 +1,11 @@
 import argparse
-from pathlib import Path
-import os
 import datetime
+import os
+import subprocess
+from pathlib import Path
 from typing import List
+
+from pydantic import ValidationError
 
 from signalai.pipeline import ingest, ranker, theme, draft, formatter, emitter
 from signalai.llm import summarize, impacts
@@ -60,30 +63,12 @@ def _filter_and_order_candidates(
     return pool
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--feeds", required=True)
-    ap.add_argument("--store", required=True)
-    ap.add_argument("--out", required=True)
-    ap.add_argument("--k", type=int, default=10)
-    ap.add_argument("--llm-impacts", action="store_true", help="Use LLM to generate Predicted Impacts")
-    ap.add_argument("--llm-summaries", action="store_true", help="Use LLM to generate one-line summaries")
-    ap.add_argument("--no-format", action="store_true", help="Disable the LLM formatter and use the pre-linted version")
-    # New selection controls
-    ap.add_argument("--window-days", type=int, default=3, help="Only consider items published within the last N days (0 = no limit)")
-    pref_group = ap.add_mutually_exclusive_group()
-    pref_group.add_argument("--prefer-new", dest="prefer_new", action="store_true", help="Rank new items first within the window (default)")
-    pref_group.add_argument("--no-prefer-new", dest="prefer_new", action="store_false", help="Do not prioritize newly ingested items")
-    ap.set_defaults(prefer_new=True)
-    ap.add_argument("--only-new", action="store_true", help="Only consider items newly ingested this run")
-    args = ap.parse_args()
-
-    # Load settings and initialize client
+def _run(args: argparse.Namespace) -> None:
+    """Run the signal pipeline."""
     settings = load_settings()
     if args.no_format:
         settings.formatter.enable = False
-    
-    # Override model from config if passed as env var
+
     llm_model_override = os.getenv("SIGNALAI_LLM_MODEL")
     if llm_model_override:
         settings.formatter.model = llm_model_override
@@ -102,7 +87,6 @@ def main():
 
     ranked_items = sorted(all_items, key=lambda x: (x.signal, x.published), reverse=True)
 
-    # Apply candidate selection to reduce repetition
     candidates = _filter_and_order_candidates(
         ranked_items=ranked_items,
         new_items=new_items,
@@ -141,10 +125,57 @@ def main():
         issue_draft,
         cfg=settings.style,
         formatter_cfg=settings.formatter,
-        client=client
+        client=client,
     )
 
     emitter.write(final_issue, Path(args.out))
+
+
+def _edit_config(args: argparse.Namespace) -> None:
+    """Open the config file in an editor and validate it."""
+    config_path = args.path or Path(__file__).with_name("config.toml")
+    editor = os.getenv("EDITOR", "vi")
+    subprocess.call([editor, str(config_path)])
+
+    try:
+        load_settings(config_path)
+        print("Configuration valid")
+    except ValidationError as e:
+        print("Configuration invalid:\n", e)
+
+
+def build_parser() -> argparse.ArgumentParser:
+    ap = argparse.ArgumentParser()
+    sub = ap.add_subparsers(dest="command", required=True)
+
+    run = sub.add_parser("run", help="Run the signal pipeline")
+    run.add_argument("--feeds", required=True)
+    run.add_argument("--store", required=True)
+    run.add_argument("--out", required=True)
+    run.add_argument("--k", type=int, default=10)
+    run.add_argument("--llm-impacts", action="store_true", help="Use LLM to generate Predicted Impacts")
+    run.add_argument("--llm-summaries", action="store_true", help="Use LLM to generate one-line summaries")
+    run.add_argument("--no-format", action="store_true", help="Disable the LLM formatter and use the pre-linted version")
+    run.add_argument("--window-days", type=int, default=3, help="Only consider items published within the last N days (0 = no limit)")
+    pref_group = run.add_mutually_exclusive_group()
+    pref_group.add_argument("--prefer-new", dest="prefer_new", action="store_true", help="Rank new items first within the window (default)")
+    pref_group.add_argument("--no-prefer-new", dest="prefer_new", action="store_false", help="Do not prioritize newly ingested items")
+    run.set_defaults(prefer_new=True)
+    run.add_argument("--only-new", action="store_true", help="Only consider items newly ingested this run")
+    run.set_defaults(func=_run)
+
+    cfg = sub.add_parser("config", help="Edit and validate the configuration file")
+    cfg.add_argument("--path", type=Path, help="Path to config file", default=None)
+    cfg.set_defaults(func=_edit_config)
+
+    return ap
+
+
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+    args.func(args)
+
 
 if __name__ == "__main__":
     main()

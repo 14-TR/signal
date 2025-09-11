@@ -1,0 +1,21 @@
+[style]
+wrap_col = 100
+grouping = ["Research", "Industry", "Open Source", "Commentary"]
+summary_min_words = 12
+summary_max_words = 38
+section_sep = "---"
+require_summaries = true
+max_top_signals = 14
+per_domain_cap = 3
+
+[style.domain_groups]
+Research = ["arxiv.org", "research.google", "openreview.net"]
+Industry = ["openai.com", "anthropic.com", "meta.ai", "google.ai"]
+"Open Source" = ["github.com"]
+
+[formatter]
+enable = true
+model = "gpt-5-mini"
+temperature = 1.0
+max_completion_tokens = 1200
+timeout_s = 60

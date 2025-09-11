@@ -1,3 +1,5 @@
+from pathlib import Path
+import tomllib
 from pydantic import BaseModel
 from typing import Dict, List
 
@@ -27,7 +29,13 @@ class Settings(BaseModel):
     style: StyleConfig = StyleConfig()
     formatter: FormatterConfig = FormatterConfig()
 
-# In a real application, this would be loaded from a TOML file or env vars.
-# For now, we'll just use the default settings.
-def load_settings() -> Settings:
-    return Settings()
+
+def load_settings(path: Path | None = None) -> Settings:
+    """Load settings from a TOML configuration file."""
+    if path is None:
+        path = Path(__file__).with_name("config.toml")
+
+    with path.open("rb") as f:
+        data = tomllib.load(f)
+
+    return Settings.model_validate(data)
