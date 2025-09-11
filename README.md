@@ -15,10 +15,10 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the CLI module with paths to your feeds, store, and output file:
+Run the CLI module with paths to your feeds, store, and output dir:
 
 ```bash
-python -m signalai.cli --feeds feeds.json --store sources.json --out out/newsletter.md --k 10
+python -m signalai.cli --feeds feeds.json --store sources.json --out out/ --k 10
 ```
 
 Optional flags:
@@ -26,6 +26,26 @@ Optional flags:
 - `--llm-summaries` to use an LLM for bullet summaries.
 - `--llm-impacts` to generate a Predicted Impacts section with an LLM.
 - `--no-format` to disable the LLM formatter and use the pre-linted version.
+- `--window-days N` limit candidates to the last N days (default: 3; 0 = no limit).
+- `--prefer-new` prioritize items newly ingested this run (default).
+- `--no-prefer-new` disable the new-item preference.
+- `--only-new` only consider items newly ingested this run.
+
+### Professional run example
+
+```bash
+export OPENAI_API_KEY=... \
+&& export SIGNALAI_LLM_MODEL=gpt-5-mini \
+&& python -m signalai.cli \
+  --feeds feeds.json \
+  --store sources.json \
+  --out out/ \
+  --k 12 \
+  --window-days 3 \
+  --prefer-new \
+  --llm-summaries \
+  --llm-impacts
+```
 
 ## Configuration
 

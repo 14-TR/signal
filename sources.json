@@ -8014,5 +8014,539 @@
     "hash": "d42ac5dc6853fbd324964decee6d5abcef891202",
     "domain": "computerhumaninteraction.com",
     "signal": null
+  },
+  {
+    "title": "Creating next-gen characters",
+    "url": "https://openai.com/index/inworld-ai-do-not-publish",
+    "summary": "Using GPT-3 to create the next generation of AI-powered characters.",
+    "published": "2023-01-01T08:00:00+00:00",
+    "tags": [],
+    "source": "OpenAI Blog",
+    "hash": "e8391cc80290e54de299e8adbedbf8a926683228",
+    "domain": "openai.com",
+    "signal": null
+  },
+  {
+    "title": "$142 upgrade kit and spare modules turn Nvidia RTX 4090 24GB to 48GB AI card",
+    "url": "https://www.tomshardware.com/pc-components/gpus/usd142-upgrade-kit-and-spare-modules-turn-nvidia-rtx-4090-24gb-to-48gb-ai-card-technician-explains-how-chinese-factories-turn-gaming-flagships-into-highly-desirable-ai-gpus",
+    "summary": "<p>Article URL: <a href=\"https://www.tomshardware.com/pc-components/gpus/usd142-upgrade-kit-and-spare-modules-turn-nvidia-rtx-4090-24gb-to-48gb-ai-card-technician-explains-how-chinese-factories-turn-gaming-flagships-into-highly-desirable-ai-gpus\">https://www.tomshardware.com/pc-components/gpus/usd142-upgrade-kit-and-spare-modules-turn-nvidia-rtx-4090-24gb-to-48gb-ai-card-technician-explains-how-chinese-factories-turn-gaming-flagships-into-highly-desirable-ai-gpus</a></p>\n<p>Comments URL: <a href",
+    "published": "2025-09-11T00:51:32+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "221d34d1b02043e361fa8a6b2b53e34c87343f68",
+    "domain": "tomshardware.com",
+    "signal": null
+  },
+  {
+    "title": "XML Prompting Revolution: Math Proofs for Guaranteed LLM Stability",
+    "url": "https://arxiv.org/abs/2509.08182",
+    "summary": "<p>Article URL: <a href=\"https://arxiv.org/abs/2509.08182\">https://arxiv.org/abs/2509.08182</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45206014\">https://news.ycombinator.com/item?id=45206014</a></p>\n<p>Points: 1</p>\n<p># Comments: 2</p>",
+    "published": "2025-09-11T00:19:00+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "28419c31a02605f991e1c32104a6827ca37e2d09",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Checkpoint-engine: A middleware to update model weights in LLM inference engines",
+    "url": "https://github.com/moonshotai/checkpoint-engine",
+    "summary": "<p>Article URL: <a href=\"https://github.com/MoonshotAI/checkpoint-engine\">https://github.com/MoonshotAI/checkpoint-engine</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45205500\">https://news.ycombinator.com/item?id=45205500</a></p>\n<p>Points: 2</p>\n<p># Comments: 1</p>",
+    "published": "2025-09-10T23:20:44+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "bc0adb3e7e0ccce8736791fa1c80b050489d9e6b",
+    "domain": "github.com",
+    "signal": null
+  },
+  {
+    "title": "RSS co-creator launches new protocol for AI data licensing",
+    "url": "https://techcrunch.com/2025/09/10/rss-co-creator-launches-new-protocol-for-ai-data-licensing/",
+    "summary": "<p>Article URL: <a href=\"https://techcrunch.com/2025/09/10/rss-co-creator-launches-new-protocol-for-ai-data-licensing/\">https://techcrunch.com/2025/09/10/rss-co-creator-launches-new-protocol-for-ai-data-licensing/</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45204849\">https://news.ycombinator.com/item?id=45204849</a></p>\n<p>Points: 3</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T22:22:04+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "cd8690be21917a29a371e6101fece498d2d723f4",
+    "domain": "techcrunch.com",
+    "signal": null
+  },
+  {
+    "title": "Ted Cruz Proposes Sandbox Act to Waive Federal Regulations for AI Developers",
+    "url": "https://www.commerce.senate.gov/2025/9/sen-cruz-unveils-ai-policy-framework-to-strengthen-american-ai-leadership",
+    "summary": "<p>Article URL: <a href=\"https://www.commerce.senate.gov/2025/9/sen-cruz-unveils-ai-policy-framework-to-strengthen-american-ai-leadership\">https://www.commerce.senate.gov/2025/9/sen-cruz-unveils-ai-policy-framework-to-strengthen-american-ai-leadership</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45204816\">https://news.ycombinator.com/item?id=45204816</a></p>\n<p>Points: 8</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T22:20:22+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "9367d09ffdb90d576c32f10ca387a6d7e3057727",
+    "domain": "commerce.senate.gov",
+    "signal": null
+  },
+  {
+    "title": "Show HN: AI Rules Manager – Package manager for AI coding assistant rules",
+    "url": "https://github.com/jomadu/ai-rules-manager",
+    "summary": "<p>I built ARM (AI Rules Manager) to solve a problem that's been bugging me: managing AI rules across projects is broken.<p>If you use Cursor, GitHub Copilot, or Amazon Q, you know how powerful custom rules can be for guiding AI behavior. But right now, everyone just copies `.cursorrules` files around manually. Once copied, they're orphaned – no updates, no version control, no way to know if changes will break your AI's behavior.<p>ARM treats AI rules like npm packages. You can:<p>- Install vers",
+    "published": "2025-09-10T22:17:22+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "108f742a5a1f97f6f37a46e41d96f9eb02e9f0f4",
+    "domain": "github.com",
+    "signal": null
+  },
+  {
+    "title": "AI School Is in Session",
+    "url": "https://www.nytimes.com/2025/09/05/podcasts/hardfork-education-alpha-school.html",
+    "summary": "<p>Article URL: <a href=\"https://www.nytimes.com/2025/09/05/podcasts/hardfork-education-alpha-school.html\">https://www.nytimes.com/2025/09/05/podcasts/hardfork-education-alpha-school.html</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45204580\">https://news.ycombinator.com/item?id=45204580</a></p>\n<p>Points: 3</p>\n<p># Comments: 1</p>",
+    "published": "2025-09-10T22:01:23+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "5d6cacc0007cb4ea2d8a465c2974462298a8b742",
+    "domain": "nytimes.com",
+    "signal": null
+  },
+  {
+    "title": "AI Is Coming for YouTube Creators",
+    "url": "https://www.theatlantic.com/technology/archive/2025/09/youtube-ai-training-data-sets/684116/",
+    "summary": "<p>Article URL: <a href=\"https://www.theatlantic.com/technology/archive/2025/09/youtube-ai-training-data-sets/684116/\">https://www.theatlantic.com/technology/archive/2025/09/youtube-ai-training-data-sets/684116/</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45204238\">https://news.ycombinator.com/item?id=45204238</a></p>\n<p>Points: 3</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T21:39:41+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "cb73919455a4909b30ad1f8a958da262636e35ab",
+    "domain": "theatlantic.com",
+    "signal": null
+  },
+  {
+    "title": "Identity Gaps That Put AI Agents at Risk",
+    "url": "https://www.dock.io/post/5-identity-gaps-that-put-ai-agents-at-risk",
+    "summary": "<p>Article URL: <a href=\"https://www.dock.io/post/5-identity-gaps-that-put-ai-agents-at-risk\">https://www.dock.io/post/5-identity-gaps-that-put-ai-agents-at-risk</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45204102\">https://news.ycombinator.com/item?id=45204102</a></p>\n<p>Points: 2</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T21:31:12+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "49e38e193c349e20a853763a3e53630ac572cbd8",
+    "domain": "dock.io",
+    "signal": null
+  },
+  {
+    "title": "Lessons from Hidden Satoshi Gold Book on Crypto and AI",
+    "url": "https://satoshigoldbook.com/",
+    "summary": "<p>Article URL: <a href=\"https://satoshigoldbook.com/\">https://satoshigoldbook.com/</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45203763\">https://news.ycombinator.com/item?id=45203763</a></p>\n<p>Points: 2</p>\n<p># Comments: 1</p>",
+    "published": "2025-09-10T21:09:54+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "97ef97657599f329aa380194a5000e42b2006ea0",
+    "domain": "satoshigoldbook.com",
+    "signal": null
+  },
+  {
+    "title": "HiTex: A spam factory for AI-generated books",
+    "url": "https://laurent.le-brun.eu/blog/hitex-a-spam-factory-for-ai-generated-books",
+    "summary": "<p>Article URL: <a href=\"https://laurent.le-brun.eu/blog/hitex-a-spam-factory-for-ai-generated-books\">https://laurent.le-brun.eu/blog/hitex-a-spam-factory-for-ai-generated-books</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45203707\">https://news.ycombinator.com/item?id=45203707</a></p>\n<p>Points: 4</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T21:05:26+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "b5451dbe802c8ec202c0b24148d7c13cdb4169d1",
+    "domain": "laurent.le-brun.eu",
+    "signal": null
+  },
+  {
+    "title": "AI-Personalized Welcome Messages for Website Visitors",
+    "url": "https://peteallport.substack.com/p/ai-personalized-welcome-messages",
+    "summary": "<p>Article URL: <a href=\"https://peteallport.substack.com/p/ai-personalized-welcome-messages\">https://peteallport.substack.com/p/ai-personalized-welcome-messages</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45203294\">https://news.ycombinator.com/item?id=45203294</a></p>\n<p>Points: 2</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T20:36:56+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "1b5fe4f3d321837e47a37081655037e4a4f40f04",
+    "domain": "peteallport.substack.com",
+    "signal": null
+  },
+  {
+    "title": "Network of agents collaborating through a publication/review system",
+    "url": "https://github.com/spolu/srchd",
+    "summary": "<p>Article URL: <a href=\"https://github.com/spolu/srchd\">https://github.com/spolu/srchd</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45202848\">https://news.ycombinator.com/item?id=45202848</a></p>\n<p>Points: 2</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T20:03:25+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "767472cd093bde5d749f72948bbfdf1d2e409650",
+    "domain": "github.com",
+    "signal": null
+  },
+  {
+    "title": "Designing software architecture for parallel AI sessions",
+    "url": "https://rashidazarang.com/c/software-architecture-for-parallel-ai",
+    "summary": "<p>Article URL: <a href=\"https://rashidazarang.com/c/software-architecture-for-parallel-ai\">https://rashidazarang.com/c/software-architecture-for-parallel-ai</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45202758\">https://news.ycombinator.com/item?id=45202758</a></p>\n<p>Points: 5</p>\n<p># Comments: 2</p>",
+    "published": "2025-09-10T19:56:15+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "6509ec46e84a98859fc90010ba34bbeb31f8efdc",
+    "domain": "rashidazarang.com",
+    "signal": null
+  },
+  {
+    "title": "Show HN: Package Search MCP – enable agents to search dependency source code",
+    "url": "https://trychroma.com/package-search",
+    "summary": "<p>Hi all - Hammad here, CTO of Chroma.<p>We’ve been working closely with teams building AI systems for the software engineering stack - autocomplete bots, PR review agents, and code assistants. One common pain point we see: these systems hallucinate about dependencies.<p>While most companies index the primary codebase with grep, semantic search, and AST-based tools, dependencies are often overlooked. Even though they typically make up the bulk of running code. Maintaining source ingestion into ",
+    "published": "2025-09-10T19:46:46+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "2f37502774e94da0575fbc35aede365293f8c2a9",
+    "domain": "trychroma.com",
+    "signal": null
+  },
+  {
+    "title": "LLM Latency Leaderboard",
+    "url": "https://llm.orgsoft.org/",
+    "summary": "<p>Article URL: <a href=\"https://llm.orgsoft.org/\">https://llm.orgsoft.org/</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45202511\">https://news.ycombinator.com/item?id=45202511</a></p>\n<p>Points: 2</p>\n<p># Comments: 0</p>",
+    "published": "2025-09-10T19:32:54+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "178a5d31d72e3d4777895c320e3f3812f2fa2f49",
+    "domain": "llm.orgsoft.org",
+    "signal": null
+  },
+  {
+    "title": "AI \"interview\" that turns your idea into PRDs and mockups",
+    "url": "https://orchestra.space",
+    "summary": "<p>Article URL: <a href=\"https://orchestra.space\">https://orchestra.space</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45202408\">https://news.ycombinator.com/item?id=45202408</a></p>\n<p>Points: 7</p>\n<p># Comments: 1</p>",
+    "published": "2025-09-10T19:23:07+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "d965d16cade77ac74e44ccedcca3f085d5d86e90",
+    "domain": "orchestra.space",
+    "signal": null
+  },
+  {
+    "title": "The AI Nerf Is Real",
+    "url": "https://isitnerfed.org",
+    "summary": "<p>Article URL: <a href=\"https://isitnerfed.org\">https://isitnerfed.org</a></p>\n<p>Comments URL: <a href=\"https://news.ycombinator.com/item?id=45202304\">https://news.ycombinator.com/item?id=45202304</a></p>\n<p>Points: 5</p>\n<p># Comments: 1</p>",
+    "published": "2025-09-10T19:13:17+00:00",
+    "tags": [],
+    "source": "Hacker News AI",
+    "hash": "7433133ca6c40847c0b2b3f5065f999abc233536",
+    "domain": "isitnerfed.org",
+    "signal": null
+  },
+  {
+    "title": "Mini-o3: Scaling Up Reasoning Patterns and Interaction Turns for Visual\n  Search",
+    "url": "http://arxiv.org/abs/2509.07969v1",
+    "summary": "Recent advances in large multimodal models have leveraged image-based tools\nwith reinforcement learning to tackle visual problems. However, existing\nopen-source approaches often exhibit monotonous reasoning patterns and allow\nonly a limited number of interaction turns, making them inadequate for\ndifficult tasks that require trial-and-error exploration. In this work, we\naddress this limitation by scaling up tool-based interactions and introduce\nMini-o3, a system that executes deep, multi-turn rea",
+    "published": "2025-09-09T17:54:21+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "557f5d660f0581647048238cd211db9114d8d8de",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Probing the Preferences of a Language Model: Integrating Verbal and\n  Behavioral Tests of AI Welfare",
+    "url": "http://arxiv.org/abs/2509.07961v1",
+    "summary": "We develop new experimental paradigms for measuring welfare in language\nmodels. We compare verbal reports of models about their preferences with\npreferences expressed through behavior when navigating a virtual environment\nand selecting conversation topics. We also test how costs and rewards affect\nbehavior and whether responses to an eudaimonic welfare scale - measuring\nstates such as autonomy and purpose in life - are consistent across\nsemantically equivalent prompts. Overall, we observed a not",
+    "published": "2025-09-09T17:48:44+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "daa27ef86f4012e312fa2ca92e0a46f5160a612b",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "ACE and Diverse Generalization via Selective Disagreement",
+    "url": "http://arxiv.org/abs/2509.07955v1",
+    "summary": "Deep neural networks are notoriously sensitive to spurious correlations -\nwhere a model learns a shortcut that fails out-of-distribution. Existing work\non spurious correlations has often focused on incomplete\ncorrelations,leveraging access to labeled instances that break the correlation.\nBut in cases where the spurious correlations are complete, the correct\ngeneralization is fundamentally \\textit{underspecified}. To resolve this\nunderspecification, we propose learning a set of concepts that are ",
+    "published": "2025-09-09T17:43:05+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "cec580c510de5a47d48e296c5eb3fb11bab324cb",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Bringing Multi-Modal Multi-Task Federated Foundation Models to Education\n  Domain: Prospects and Challenges",
+    "url": "http://arxiv.org/abs/2509.07946v1",
+    "summary": "Multi-modal multi-task (M3T) foundation models (FMs) have recently shown\ntransformative potential in artificial intelligence, with emerging applications\nin education. However, their deployment in real-world educational settings is\nhindered by privacy regulations, data silos, and limited domain-specific data\navailability. We introduce M3T Federated Foundation Models (FedFMs) for\neducation: a paradigm that integrates federated learning (FL) with M3T FMs to\nenable collaborative, privacy-preserving ",
+    "published": "2025-09-09T17:31:42+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "f0f55b8edc0c8388a796567de4c510be2e7ecfc4",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "ImportSnare: Directed \"Code Manual\" Hijacking in Retrieval-Augmented\n  Code Generation",
+    "url": "http://arxiv.org/abs/2509.07941v1",
+    "summary": "Code generation has emerged as a pivotal capability of Large Language\nModels(LLMs), revolutionizing development efficiency for programmers of all\nskill levels. However, the complexity of data structures and algorithmic logic\noften results in functional deficiencies and security vulnerabilities in\ngenerated code, reducing it to a prototype requiring extensive manual\ndebugging. While Retrieval-Augmented Generation (RAG) can enhance correctness\nand security by leveraging external code manuals, it s",
+    "published": "2025-09-09T17:21:20+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "214d599ac775e13947cb8f7a8a06e5c865070b57",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Breaking Android with AI: A Deep Dive into LLM-Powered Exploitation",
+    "url": "http://arxiv.org/abs/2509.07933v1",
+    "summary": "The rapid evolution of Artificial Intelligence (AI) and Large Language Models\n(LLMs) has opened up new opportunities in the area of cybersecurity, especially\nin the exploitation automation landscape and penetration testing. This study\nexplores Android penetration testing automation using LLM-based tools,\nespecially PentestGPT, to identify and execute rooting techniques. Through a\ncomparison of the traditional manual rooting process and exploitation methods\nproduced using AI, this study evaluates",
+    "published": "2025-09-09T17:17:06+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "0def63e65f09a36e7becaa2cfea52c191b82192f",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Accelerating Local AI on Consumer GPUs: A Hardware-Aware Dynamic\n  Strategy for YOLOv10s",
+    "url": "http://arxiv.org/abs/2509.07928v1",
+    "summary": "As local AI grows in popularity, there is a critical gap between the\nbenchmark performance of object detectors and their practical viability on\nconsumer-grade hardware. While models like YOLOv10s promise real-time speeds,\nthese metrics are typically achieved on high-power, desktop-class GPUs. This\npaper reveals that on resource-constrained systems, such as laptops with RTX\n4060 GPUs, performance is not compute-bound but is instead dominated by\nsystem-level bottlenecks, as illustrated by a simple",
+    "published": "2025-09-09T17:13:31+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "6f536b6ef10c27c5e77c406e23e03765f4b34cfe",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "GENUINE: Graph Enhanced Multi-level Uncertainty Estimation for Large\n  Language Models",
+    "url": "http://arxiv.org/abs/2509.07925v1",
+    "summary": "Uncertainty estimation is essential for enhancing the reliability of Large\nLanguage Models (LLMs), particularly in high-stakes applications. Existing\nmethods often overlook semantic dependencies, relying on token-level\nprobability measures that fail to capture structural relationships within the\ngenerated text. We propose GENUINE: Graph ENhanced mUlti-level uncertaINty\nEstimation for Large Language Models, a structure-aware framework that\nleverages dependency parse trees and hierarchical graph p",
+    "published": "2025-09-09T17:07:44+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "373a407d07bc2bec77aafb90530835bb1a69e780",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Multimodal Contrastive Pretraining of CBCT and IOS for Enhanced Tooth\n  Segmentation",
+    "url": "http://arxiv.org/abs/2509.07923v1",
+    "summary": "Digital dentistry represents a transformative shift in modern dental\npractice. The foundational step in this transformation is the accurate digital\nrepresentation of the patient's dentition, which is obtained from segmented\nCone-Beam Computed Tomography (CBCT) and Intraoral Scans (IOS). Despite the\ngrowing interest in digital dental technologies, existing segmentation\nmethodologies frequently lack rigorous validation and demonstrate limited\nperformance and clinical applicability. To the best of ",
+    "published": "2025-09-09T17:05:04+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "f17487ea50261590f93b64ce2f28f41fa285abe6",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Uncovering Scaling Laws for Large Language Models via Inverse Problems",
+    "url": "http://arxiv.org/abs/2509.07909v1",
+    "summary": "Large Language Models (LLMs) are large-scale pretrained models that have\nachieved remarkable success across diverse domains. These successes have been\ndriven by unprecedented complexity and scale in both data and computations.\nHowever, due to the high costs of training such models, brute-force\ntrial-and-error approaches to improve LLMs are not feasible. Inspired by the\nsuccess of inverse problems in uncovering fundamental scientific laws, this\nposition paper advocates that inverse problems can a",
+    "published": "2025-09-09T16:53:21+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "7716c8aa0f0587b0c007f670a44d5881b18168b5",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "HiPhO: How Far Are (M)LLMs from Humans in the Latest High School Physics\n  Olympiad Benchmark?",
+    "url": "http://arxiv.org/abs/2509.07894v2",
+    "summary": "Recently, the physical capabilities of (M)LLMs have garnered increasing\nattention. However, existing benchmarks for physics suffer from two major gaps:\nthey neither provide systematic and up-to-date coverage of real-world physics\ncompetitions such as physics Olympiads, nor enable direct performance\ncomparison with humans. To bridge these gaps, we present HiPhO, the first\nbenchmark dedicated to high school physics Olympiads with human-aligned\nevaluation. Specifically, HiPhO highlights three key i",
+    "published": "2025-09-09T16:24:51+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "bd1ebe07dad94815c2ac2eb0e3e3d7e5f9cacfd1",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Active Membership Inference Test (aMINT): Enhancing Model Auditability\n  with Multi-Task Learning",
+    "url": "http://arxiv.org/abs/2509.07879v1",
+    "summary": "Active Membership Inference Test (aMINT) is a method designed to detect\nwhether given data were used during the training of machine learning models. In\nActive MINT, we propose a novel multitask learning process that involves\ntraining simultaneously two models: the original or Audited Model, and a\nsecondary model, referred to as the MINT Model, responsible for identifying the\ndata used for training the Audited Model. This novel multi-task learning\napproach has been designed to incorporate the aud",
+    "published": "2025-09-09T16:00:03+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "e00d6db588d910d361a37ab4dc804d877ed9e585",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "CP-Model-Zoo: A Natural Language Query System for Constraint Programming\n  Models",
+    "url": "http://arxiv.org/abs/2509.07867v1",
+    "summary": "Constraint Programming and its high-level modeling languages have long been\nrecognized for their potential to achieve the holy grail of problem-solving.\nHowever, the complexity of modeling languages, the large number of global\nconstraints, and the art of creating good models have often hindered\nnon-experts from choosing CP to solve their combinatorial problems. While\ngenerating an expert-level model from a natural-language description of a\nproblem would be the dream, we are not yet there. We pro",
+    "published": "2025-09-09T15:55:15+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "90e212c90f7a725248ffdff3aed21205495196f8",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "SCoder: Iterative Self-Distillation for Bootstrapping Small-Scale Data\n  Synthesizers to Empower Code LLMs",
+    "url": "http://arxiv.org/abs/2509.07858v1",
+    "summary": "Existing code large language models (LLMs) often rely on large-scale\ninstruction data distilled from proprietary LLMs for fine-tuning, which\ntypically incurs high costs. In this paper, we explore the potential of\nsmall-scale open-source LLMs (e.g., 7B) as synthesizers for high-quality code\ninstruction data construction. We first observe that the data synthesis\ncapability of small-scale LLMs can be enhanced by training on a few superior\ndata synthesis samples from proprietary LLMs. Building on th",
+    "published": "2025-09-09T15:38:44+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "dbf750c21cc4577d8da79ecc458986502d7145dd",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Deep Learning-Based Burned Area Mapping Using Bi-Temporal Siamese\n  Networks and AlphaEarth Foundation Datasets",
+    "url": "http://arxiv.org/abs/2509.07852v1",
+    "summary": "Accurate and timely mapping of burned areas is crucial for environmental\nmonitoring, disaster management, and assessment of climate change. This study\npresents a novel approach to automated burned area mapping using the AlphaEArth\ndataset combined with the Siamese U-Net deep learning architecture. The\nAlphaEArth Dataset, comprising high-resolution optical and thermal infrared\nimagery with comprehensive ground-truth annotations, provides an unprecedented\nresource for training robust burned area d",
+    "published": "2025-09-09T15:29:18+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "2980ba231a60c8b06d044ea318ef75cb919659fb",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Aligning LLMs for the Classroom with Knowledge-Based Retrieval -- A\n  Comparative RAG Study",
+    "url": "http://arxiv.org/abs/2509.07846v1",
+    "summary": "Large language models like ChatGPT are increasingly used in classrooms, but\nthey often provide outdated or fabricated information that can mislead\nstudents. Retrieval Augmented Generation (RAG) improves reliability of LLMs by\ngrounding responses in external resources. We investigate two accessible RAG\nparadigms, vector-based retrieval and graph-based retrieval to identify best\npractices for classroom question answering (QA). Existing comparative studies\nfail to account for pedagogical factors su",
+    "published": "2025-09-09T15:22:33+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "3378016190533dce296940d9a5bfa8815a8a7bf2",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Small Open Models Achieve Near Parity with Large Models in Low Resource\n  Literary Translation at a Fraction of the Cost",
+    "url": "http://arxiv.org/abs/2509.07829v1",
+    "summary": "Literary translation has recently gained attention as a distinct and complex\ntask in machine translation research. However, the translation by small open\nmodels remains an open problem. We contribute to this ongoing research by\nintroducing TINYFABULIST TRANSLATION FRAMEWORK (TF2), a unified framework for\ndataset creation, fine tuning, and evaluation in English-Romanian literary\ntranslations, centred on the creation and open release of both a compact, fine\ntuned language model (TF2-12B) and large",
+    "published": "2025-09-09T15:07:14+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "7a485ddb95f6c921cb03f9b1095b35ea0f1588c3",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Certainty-Guided Reasoning in Large Language Models: A Dynamic Thinking\n  Budget Approach",
+    "url": "http://arxiv.org/abs/2509.07820v1",
+    "summary": "The rise of large reasoning language models (LRLMs) has unlocked new\npotential for solving complex tasks. These models operate with a thinking\nbudget, that is, a predefined number of reasoning tokens used to arrive at a\nsolution. We propose a novel approach, inspired by the generator/discriminator\nframework in generative adversarial networks, in which a critic model\nperiodically probes its own reasoning to assess whether it has reached a\nconfident conclusion. If not, reasoning continues until a ",
+    "published": "2025-09-09T14:57:15+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "5cb8462ade8c5a3671dcdfffab797b9d34116495",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Forecasting Russian Equipment Losses Using Time Series and Deep Learning\n  Models",
+    "url": "http://arxiv.org/abs/2509.07813v1",
+    "summary": "This study applies a range of forecasting techniques,including ARIMA,\nProphet, Long Short Term Memory networks (LSTM), Temporal Convolutional\nNetworks (TCN), and XGBoost, to model and predict Russian equipment losses\nduring the ongoing war in Ukraine. Drawing on daily and monthly open-source\nintelligence (OSINT) data from WarSpotting, we aim to assess trends in\nattrition, evaluate model performance, and estimate future loss patterns\nthrough the end of 2025. Our findings show that deep learning m",
+    "published": "2025-09-09T14:52:31+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "c03d7f2d76e3b9755bc4b237ad31de5cd5dce37f",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Enhanced SegNet with Integrated Grad-CAM for Interpretable Retinal Layer\n  Segmentation in OCT Images",
+    "url": "http://arxiv.org/abs/2509.07795v1",
+    "summary": "Optical Coherence Tomography (OCT) is essential for diagnosing conditions\nsuch as glaucoma, diabetic retinopathy, and age-related macular degeneration.\nAccurate retinal layer segmentation enables quantitative biomarkers critical\nfor clinical decision-making, but manual segmentation is time-consuming and\nvariable, while conventional deep learning models often lack interpretability.\nThis work proposes an improved SegNet-based deep learning framework for\nautomated and interpretable retinal layer se",
+    "published": "2025-09-09T14:31:51+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "2b01f838451abd24f64338216154abf632136320",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Individual utilities of life satisfaction reveal inequality aversion\n  unrelated to political alignment",
+    "url": "http://arxiv.org/abs/2509.07793v2",
+    "summary": "How should well-being be prioritised in society, and what trade-offs are\npeople willing to make between fairness and personal well-being? We investigate\nthese questions using a stated preference experiment with a nationally\nrepresentative UK sample (n = 300), in which participants evaluated life\nsatisfaction outcomes for both themselves and others under conditions of\nuncertainty. Individual-level utility functions were estimated using an\nExpected Utility Maximisation (EUM) framework and tested f",
+    "published": "2025-09-09T14:30:24+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "193160df01e957c94ecce65cf0f57198ccbc742b",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "XSRD-Net: EXplainable Stroke Relapse Detection",
+    "url": "http://arxiv.org/abs/2509.07772v1",
+    "summary": "Stroke is the second most frequent cause of death world wide with an annual\nmortality of around 5.5 million. Recurrence rates of stroke are between 5 and\n25% in the first year. As mortality rates for relapses are extraordinarily high\n(40%) it is of utmost importance to reduce the recurrence rates. We address\nthis issue by detecting patients at risk of stroke recurrence at an early stage\nin order to enable appropriate therapy planning. To this end we collected 3D\nintracranial CTA image data and r",
+    "published": "2025-09-09T14:06:01+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "9218790046f046af143a63bf5b21e8e0987428f8",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Are LLMs Enough for Hyperpartisan, Fake, Polarized and Harmful Content\n  Detection? Evaluating In-Context Learning vs. Fine-Tuning",
+    "url": "http://arxiv.org/abs/2509.07768v1",
+    "summary": "The spread of fake news, polarizing, politically biased, and harmful content\non online platforms has been a serious concern. With large language models\nbecoming a promising approach, however, no study has properly benchmarked their\nperformance across different models, usage methods, and languages. This study\npresents a comprehensive overview of different Large Language Models adaptation\nparadigms for the detection of hyperpartisan and fake news, harmful tweets, and\npolitical bias. Our experiment",
+    "published": "2025-09-09T14:01:15+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "865d3461b35798dccc99964e7e9a13f377cc3ea9",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "What Were You Thinking? An LLM-Driven Large-Scale Study of Refactoring\n  Motivations in Open-Source Projects",
+    "url": "http://arxiv.org/abs/2509.07763v1",
+    "summary": "Context. Code refactoring improves software quality without changing external\nbehavior. Despite its advantages, its benefits are hindered by the considerable\ncost of time, resources, and continuous effort it demands. Aim. Understanding\nwhy developers refactor, and which metrics capture these motivations, may\nsupport wider and more effective use of refactoring in practice. Method. We\nperformed a large-scale empirical study to analyze developers refactoring\nactivity, leveraging Large Language Mode",
+    "published": "2025-09-09T13:58:46+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "f2e10fe1683e7f148e79777d321e830c9fce469d",
+    "domain": "arxiv.org",
+    "signal": null
+  },
+  {
+    "title": "Spectral and Rhythm Feature Performance Evaluation for Category and\n  Class Level Audio Classification with Deep Convolutional Neural Networks",
+    "url": "http://arxiv.org/abs/2509.07756v1",
+    "summary": "Next to decision tree and k-nearest neighbours algorithms deep convolutional\nneural networks (CNNs) are widely used to classify audio data in many domains\nlike music, speech or environmental sounds. To train a specific CNN various\nspectral and rhythm features like mel-scaled spectrograms, mel-frequency\ncepstral coefficients (MFCC), cyclic tempograms, short-time Fourier transform\n(STFT) chromagrams, constant-Q transform (CQT) chromagrams and chroma energy\nnormalized statistics (CENS) chromagrams ",
+    "published": "2025-09-09T13:54:41+00:00",
+    "tags": [
+      "arxiv"
+    ],
+    "source": "arXiv cs.AI",
+    "hash": "4b3b83999a5827a588e2ba518da9afbe38ae3bc8",
+    "domain": "arxiv.org",
+    "signal": null
   }
 ]

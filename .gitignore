@@ -9,3 +9,4 @@
 *.pyzwzw
 __pycache__/
 pre-built-run-command.rtf
+sources.json.*
