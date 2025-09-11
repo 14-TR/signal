@@ -1,9 +1,16 @@
 from typing import List
 from ..models import Item
-from .client import LLMClient
+from .provider import LLMProvider, FallbackProvider
+from .cache import LLMCache
 
 # No longer needs os or requests
-def generate_impacts_llm(items: List[Item], client: LLMClient) -> str:
+def generate_impacts_llm(
+    items: List[Item],
+    provider: LLMProvider,
+    *,
+    cache: LLMCache | None = None,
+    fallback: LLMProvider | None = None,
+) -> str:
     """Use an LLM to write the Predicted Impacts section in Markdown bullets."""
 
     # Compact digest of sources to keep prompt small
@@ -34,4 +41,9 @@ def generate_impacts_llm(items: List[Item], client: LLMClient) -> str:
         {"role": "user", "content": user_msg},
     ]
 
-    return client.chat(messages)
+    if fallback:
+        provider = FallbackProvider([provider, fallback], cache=cache, retries=2)
+    elif cache:
+        provider = FallbackProvider([provider], cache=cache, retries=2)
+
+    return provider.chat(messages)

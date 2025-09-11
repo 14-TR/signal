@@ -8,7 +8,7 @@ from signalai.logging import get_logger
 
 from ..models import IssueDraft, IssueFinal, Item
 from ..config import StyleConfig, FormatterConfig
-from ..llm.client import LLMClient
+from ..llm.provider import LLMProvider
 from ..llm import reformat as llm_reformat
 from . import validators
 from ..io.helpers import site_label
@@ -87,20 +87,20 @@ def beautify(
     draft: IssueDraft,
     cfg: StyleConfig,
     formatter_cfg: FormatterConfig,
-    client: LLMClient
+    client: LLMProvider | None,
 ) -> IssueFinal:
     """The main orchestration function for formatting the newsletter."""
     
     pre_linted_md, refs = _pre_lint(draft, cfg)
 
-    if formatter_cfg.enable:
+    if formatter_cfg.enable and client is not None:
         polished_markdown = llm_reformat.run(
             markdown_draft=pre_linted_md,
             original_items=draft.top_signals,
-            client=client,
+            provider=client,
             cfg=cfg,
         )
-        
+
         is_valid, errors = validators.validate(polished_markdown, draft.top_signals, cfg)
 
         if is_valid:
