@@ -5,10 +5,13 @@ import pickle
 from pathlib import Path
 from typing import Dict
 
+from signalai.logging import get_logger
 from signalai.models import Item
 from signalai.rules.authority import AUTHORITY
 from signalai.rules.keywords import BOOST_TERMS
 from signalai import analytics
+
+logger = get_logger(__name__)
 
 # Paths for logging and model artifacts
 LOG_PATH = Path(__file__).resolve().parents[2] / "out" / "ranker_log.csv"
@@ -115,8 +118,12 @@ def _load_model():
     mtime = MODEL_PATH.stat().st_mtime
     if _MODEL_CACHE and _MODEL_CACHE[0] == mtime:
         return _MODEL_CACHE[1]
-    with MODEL_PATH.open("rb") as fh:
-        weights = pickle.load(fh)
+    try:
+        with MODEL_PATH.open("rb") as fh:
+            weights = pickle.load(fh)
+    except Exception as exc:  # pragma: no cover - filesystem/format errors
+        logger.warning("Failed to load ranker model from %s: %s", MODEL_PATH, exc)
+        return None
     _MODEL_CACHE = (mtime, weights)
     return weights
 
