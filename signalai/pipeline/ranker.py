@@ -8,6 +8,7 @@ from typing import Dict
 from signalai.models import Item
 from signalai.rules.authority import AUTHORITY
 from signalai.rules.keywords import BOOST_TERMS
+from signalai import analytics
 
 # Paths for logging and model artifacts
 LOG_PATH = Path(__file__).resolve().parents[2] / "out" / "ranker_log.csv"
@@ -103,6 +104,7 @@ def record_interaction(item: Item, event: str) -> None:
     """Log an interaction event such as an open or click."""
     features = extract_features(item)
     _log_event(item, features, event)
+    analytics.log_event(item, event)
 
 
 def _load_model():
@@ -118,9 +120,12 @@ def _load_model():
     _MODEL_CACHE = (mtime, weights)
     return weights
 
-def score(item: Item) -> float:
+def score(item: Item, profile: dict[str, set[str]] | None = None) -> float:
     """Score item using trained model if available."""
     features = extract_features(item)
+    features["engagement"] += analytics.engagement_boost(item)
+    if profile:
+        features["engagement"] += analytics.personalized_boost(item, profile)
     _log_event(item, features, "impression")
 
     model = _load_model()

@@ -12,6 +12,7 @@ from signalai.llm import summarize, impacts
 from signalai.llm.client import LLMClient
 from signalai.config import load_settings
 from signalai.models import Item
+from signalai import analytics
 from signalai.logging import get_logger
 
 
@@ -131,6 +132,17 @@ def _run(args: argparse.Namespace) -> None:
     emitter.write(final_issue, Path(args.out))
 
 
+def _analytics_report(args: argparse.Namespace) -> None:
+    """Print engagement summary grouped by source and theme."""
+    summary = analytics.summarize()
+    print("Engagement by source:")
+    for src, count in sorted(summary["source"].items(), key=lambda x: -x[1]):
+        print(f"  {src}: {count}")
+    print("\nEngagement by theme:")
+    for theme_name, count in sorted(summary["theme"].items(), key=lambda x: -x[1]):
+        print(f"  {theme_name}: {count}")
+
+
 def _edit_config(args: argparse.Namespace) -> None:
     """Open the config file in an editor and validate it."""
     config_path = args.path or Path(__file__).with_name("config.toml")
@@ -167,6 +179,9 @@ def build_parser() -> argparse.ArgumentParser:
     cfg = sub.add_parser("config", help="Edit and validate the configuration file")
     cfg.add_argument("--path", type=Path, help="Path to config file", default=None)
     cfg.set_defaults(func=_edit_config)
+
+    analytics_cmd = sub.add_parser("analytics", help="Show engagement summary")
+    analytics_cmd.set_defaults(func=_analytics_report)
 
     return ap
 
