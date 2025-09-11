@@ -4,4 +4,4 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
-python -m signalai.cli --feeds feeds.json --store sources.json --out out/
+python -m signalai.cli run --feeds feeds.json --store sources.json --out out/
