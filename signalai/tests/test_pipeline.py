@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from signalai.pipeline import ingest, ranker, formatter
 from signalai.config import StyleConfig, FormatterConfig
 from signalai.models import Item, IssueFinal
+from signalai.sources import Source, registry
 
 
 def test_ingest_run_adds_new_items(tmp_path, monkeypatch, sample_feed_config):
@@ -13,20 +14,26 @@ def test_ingest_run_adds_new_items(tmp_path, monkeypatch, sample_feed_config):
     feeds_path.write_text(json.dumps(sample_feed_config))
     store_path.write_text("[]")
 
-    def dummy_fetcher(feed):
-        return [
-            Item(
-                title="Test",
-                url="https://example.com/post?ref=1",
-                summary="Summary",
-                published=datetime.now(timezone.utc),
-                tags=[],
-                source="rss",
-                domain="example.com",
-            )
-        ]
+    class DummySource(Source):
+        NAME = "rss"
 
-    monkeypatch.setitem(ingest.FETCHERS, "rss", dummy_fetcher)
+        def fetch(self, feed):
+            return None
+
+        def parse(self, raw, feed):
+            return [
+                Item(
+                    title="Test",
+                    url="https://example.com/post?ref=1",
+                    summary="Summary",
+                    published=datetime.now(timezone.utc),
+                    tags=[],
+                    source="rss",
+                    domain="example.com",
+                )
+            ]
+
+    monkeypatch.setitem(registry, "rss", DummySource)
 
     store_items, new_items = ingest.run(Path(feeds_path), Path(store_path))
 

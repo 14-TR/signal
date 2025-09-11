@@ -7,29 +7,25 @@ from signalai.logging import get_logger
 from signalai.io.helpers import canonicalize_url, sha1_of, domain_of
 from signalai.io.storage import load, save
 from signalai.models import Item
-from signalai.sources.arxiv import fetch_arxiv
-from signalai.sources.github import fetch_github_releases
-from signalai.sources.rss import fetch_rss
+from signalai.sources import registry, load_plugins
 
 
 logger = get_logger(__name__)
-
-FETCHERS = {
-    "rss": fetch_rss,
-    "github_releases": fetch_github_releases,
-    "arxiv": fetch_arxiv,
-}
 
 
 def _fetch_feed(feed):
     """Helper to fetch a single feed with error handling."""
     ftype = feed.get("type")
-    fetcher = FETCHERS.get(ftype)
-    if not fetcher:
+    cls = registry.get(ftype)
+    if not cls:
         logger.warning("Unknown feed type: %s", ftype)
         return []
+    source = cls()
     try:
-        return fetcher(feed)
+        raw = source.fetch(feed)
+        items = source.parse(raw, feed)
+        items = source.dedupe(items)
+        return items
     except Exception as e:
         logger.error("Fetch error for %s: %s", feed.get("name", ftype), e)
         return []
@@ -40,6 +36,8 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
     Loads feeds, fetches new items, dedupes, and updates the store.
     Returns the full store of items and the list of new items.
     """
+    load_plugins()
+
     feeds = load(feeds_path, [])
     store_data = load(store_path, [])
 
@@ -69,5 +67,5 @@ def run(feeds_path: Path, store_path: Path) -> Tuple[List[Item], List[Item]]:
 
     save(store_path, [item.model_dump() for item in store_items])
 
-
     return store_items, new_items
+
