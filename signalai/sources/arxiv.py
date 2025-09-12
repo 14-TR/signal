@@ -3,7 +3,12 @@ from typing import Any, Dict, List
 from urllib.parse import parse_qs, urlparse, quote_plus
 
 import requests
-import feedparser
+
+# feedparser is optional; import lazily so tests can run without it
+try:  # pragma: no cover - dependency may be missing in tests
+    import feedparser
+except ModuleNotFoundError:  # pragma: no cover
+    feedparser = None  # type: ignore
 
 try:  # pragma: no cover
     from modelcontextprotocol import call_tool  # type: ignore
@@ -46,6 +51,10 @@ class ArxivSource(Source):
         )
         response = requests.get(api_url, timeout=10)
         response.raise_for_status()
+        if feedparser is None:
+            raise RuntimeError(
+                "feedparser is required to fetch arXiv feeds."
+            )
         return feedparser.parse(response.text)
 
     def parse(self, parsed: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
