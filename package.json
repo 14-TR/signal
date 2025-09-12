@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next export",
-    "static": "npm run build && npm run export && cp out/index.html out/404.html",
+    "static": "npm run build && cp out/index.html out/404.html",
     "test": "echo \"No tests\" && exit 0"
   },
   "dependencies": {
