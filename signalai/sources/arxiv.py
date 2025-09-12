@@ -1,5 +1,6 @@
 import asyncio
 from typing import Any, Dict, List
+from urllib.parse import parse_qs, urlparse
 
 try:  # pragma: no cover
     from modelcontextprotocol import call_tool
@@ -20,9 +21,18 @@ class ArxivSource(Source):
 
     def fetch(self, feed_cfg: Dict[str, Any]) -> Any:
         async def _fetch() -> Any:
+            raw_url = feed_cfg.get("url", "")
+            parsed_url = urlparse(raw_url)
+            query = raw_url
+            max_results = 25
+            if parsed_url.scheme:
+                params = parse_qs(parsed_url.query)
+                query = params.get("search_query", [query])[0]
+                max_results = int(params.get("max_results", [max_results])[0])
+
             return await call_tool(
                 "search_papers",
-                {"query": feed_cfg["url"], "max_results": 25},
+                {"query": query, "max_results": max_results},
             )
 
         return asyncio.run(_fetch())
