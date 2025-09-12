@@ -2,7 +2,14 @@ import asyncio
 from typing import Any, Dict, List
 
 import requests
-import feedparser
+
+# feedparser is an optional dependency that may be missing in some
+# environments (e.g. during tests). Import it lazily inside fetch() so
+# that the module can be imported without the package installed.
+try:  # pragma: no cover - dependency may be missing in tests
+    import feedparser
+except ModuleNotFoundError:  # pragma: no cover
+    feedparser = None  # type: ignore
 
 try:  # pragma: no cover - dependency may be missing in tests
     from modelcontextprotocol import call_tool  # type: ignore
@@ -31,6 +38,10 @@ class RSSSource(Source):
 
         response = requests.get(feed_cfg["url"], timeout=10)
         response.raise_for_status()
+        if feedparser is None:
+            raise RuntimeError(
+                "feedparser is required to fetch RSS feeds."
+            )
         return feedparser.parse(response.text)
 
     def parse(self, parsed: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
