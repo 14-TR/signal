@@ -1,12 +1,14 @@
 import asyncio
 from typing import Any, Dict, List
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlparse, quote_plus
+
+import requests
+import feedparser
 
 try:  # pragma: no cover
-    from modelcontextprotocol import call_tool
+    from modelcontextprotocol import call_tool  # type: ignore
 except Exception:  # pragma: no cover
-    async def call_tool(*args, **kwargs):
-        raise RuntimeError("modelcontextprotocol is required for MCP calls")
+    call_tool = None  # type: ignore
 
 from signalai.models import Item
 
@@ -20,27 +22,46 @@ class ArxivSource(Source):
     NAME = "arxiv"
 
     def fetch(self, feed_cfg: Dict[str, Any]) -> Any:
-        async def _fetch() -> Any:
-            raw_url = feed_cfg.get("url", "")
-            parsed_url = urlparse(raw_url)
-            query = raw_url
-            max_results = 25
-            if parsed_url.scheme:
-                params = parse_qs(parsed_url.query)
-                query = params.get("search_query", [query])[0]
-                max_results = int(params.get("max_results", [max_results])[0])
+        raw_url = feed_cfg.get("url", "")
+        parsed_url = urlparse(raw_url)
+        query = raw_url
+        max_results = 25
+        if parsed_url.scheme:
+            params = parse_qs(parsed_url.query)
+            query = params.get("search_query", [query])[0]
+            max_results = int(params.get("max_results", [max_results])[0])
 
-            return await call_tool(
-                "search_papers",
-                {"query": query, "max_results": max_results},
-            )
+        if call_tool:
+            async def _fetch() -> Any:
+                return await call_tool(
+                    "search_papers",
+                    {"query": query, "max_results": max_results},
+                )
 
-        return asyncio.run(_fetch())
+            return asyncio.run(_fetch())
+
+        api_url = (
+            "http://export.arxiv.org/api/query?search_query="
+            f"{quote_plus(query)}&max_results={max_results}"
+        )
+        response = requests.get(api_url, timeout=10)
+        response.raise_for_status()
+        return feedparser.parse(response.text)
 
     def parse(self, parsed: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
-        papers = []
+        papers: List[Dict[str, Any]] = []
         if isinstance(parsed, dict):
             papers = parsed.get("items") or parsed.get("papers") or []
+        else:
+            for entry in getattr(parsed, "entries", []):
+                papers.append(
+                    {
+                        "title": entry.get("title", ""),
+                        "link": entry.get("link", ""),
+                        "summary": entry.get("summary", ""),
+                        "published": entry.get("published"),
+                    }
+                )
 
         items: List[Item] = []
         for paper in papers:
