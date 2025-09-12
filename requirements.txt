@@ -1,5 +1,5 @@
 modelcontextprotocol
 requests==2.32.3
-pydantic==2.7.1
+pydantic>=2.10.6
 python-dateutil==2.9.0
 pytest==8.2.2
