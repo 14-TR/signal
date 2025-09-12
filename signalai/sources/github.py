@@ -2,11 +2,12 @@ import asyncio
 from typing import Any, Dict, List
 from urllib.parse import urlparse
 
+import requests
+
 try:  # pragma: no cover
-    from modelcontextprotocol import call_tool
+    from modelcontextprotocol import call_tool  # type: ignore
 except Exception:  # pragma: no cover
-    async def call_tool(*args, **kwargs):
-        raise RuntimeError("modelcontextprotocol is required for MCP calls")
+    call_tool = None  # type: ignore
 
 from signalai.models import Item
 
@@ -26,16 +27,27 @@ class GitHubSource(Source):
         else:
             path = url.strip("/")
         owner, repo, *_ = path.split("/")
+        if call_tool:
+            async def _fetch() -> Any:
+                return await call_tool(
+                    "list_releases", {"owner": owner, "repo": repo, "limit": 10}
+                )
 
-        async def _fetch() -> Any:
-            return await call_tool(
-                "list_releases", {"owner": owner, "repo": repo, "limit": 10}
-            )
+            return asyncio.run(_fetch())
 
-        return asyncio.run(_fetch())
+        response = requests.get(
+            f"https://api.github.com/repos/{owner}/{repo}/releases?per_page=10",
+            timeout=10,
+            headers={"Accept": "application/vnd.github+json"},
+        )
+        response.raise_for_status()
+        return response.json()
 
     def parse(self, releases: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
-        rels = releases.get("releases", releases)
+        if isinstance(releases, dict):
+            rels = releases.get("releases", releases)
+        else:
+            rels = releases
         items: List[Item] = []
         for rel in rels[:10]:
             items.append(
