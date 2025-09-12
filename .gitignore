@@ -10,3 +10,9 @@
 __pycache__/
 pre-built-run-command.rtf
 sources.json.*
+# Node/Next.js
+node_modules/
+.next/
+out/
+npm-debug.log*
+
