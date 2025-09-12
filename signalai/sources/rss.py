@@ -1,5 +1,11 @@
-import feedparser
+import asyncio
 from typing import Any, Dict, List
+
+try:  # pragma: no cover - dependency may be missing in tests
+    from modelcontextprotocol import call_tool
+except Exception:  # pragma: no cover
+    async def call_tool(*args, **kwargs):
+        raise RuntimeError("modelcontextprotocol is required for MCP calls")
 
 from signalai.models import Item
 
@@ -13,11 +19,17 @@ class RSSSource(Source):
     NAME = "rss"
 
     def fetch(self, feed_cfg: Dict[str, Any]) -> Any:
-        return feedparser.parse(feed_cfg["url"])
+        async def _fetch() -> Any:
+            return await call_tool(
+                "get_feed", {"url": feed_cfg["url"], "num_items": 10}
+            )
+
+        return asyncio.run(_fetch())
 
     def parse(self, parsed: Any, feed_cfg: Dict[str, Any]) -> List[Item]:
+        entries = parsed.get("items", []) if isinstance(parsed, dict) else []
         items: List[Item] = []
-        for entry in parsed.entries:
+        for entry in entries:
             items.append(
                 create_item(
                     title=entry.get("title", ""),

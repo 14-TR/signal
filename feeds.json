@@ -5,6 +5,6 @@
   {"type": "rss", "name": "DeepMind", "url": "https://deepmind.google/discover/rss.xml"},
   {"type": "rss", "name": "Anthropic", "url": "https://www.anthropic.com/news/rss.xml"},
   {"type": "rss", "name": "Hacker News AI", "url": "https://hnrss.org/newest?q=AI%20OR%20LLM%20OR%20agents"},
-  {"type": "github_releases", "name": "HuggingFace Transformers", "url": "https://api.github.com/repos/huggingface/transformers/releases"},
+  {"type": "github_releases", "name": "HuggingFace Transformers", "url": "https://github.com/huggingface/transformers"},
   {"type": "arxiv", "name": "arXiv cs.AI", "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=25"}
 ]

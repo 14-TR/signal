@@ -1,18 +1,8 @@
 import datetime
 import importlib.metadata
-import types
-
-import feedparser
-import requests
 
 from signalai.sources import Source, load_plugins, registry
 from signalai.models import Item
-
-
-def _parsed(entries):
-    parsed = types.SimpleNamespace()
-    parsed.entries = entries
-    return parsed
 
 
 def test_fetch_rss(monkeypatch):
@@ -23,10 +13,15 @@ def test_fetch_rss(monkeypatch):
         "summary": "S",
         "published": "2024-01-01T00:00:00Z",
     }
-    monkeypatch.setattr(feedparser, "parse", lambda url: _parsed([entry]))
+
+    async def fake_call(tool, params):
+        assert tool == "get_feed"
+        return {"items": [entry]}
+
     registry.clear()
     load_plugins(["signalai.sources.rss:RSSSource"])
     src = registry["rss"]()
+    monkeypatch.setattr("signalai.sources.rss.call_tool", fake_call)
     parsed = src.fetch(feed)
     items = src.parse(parsed, feed)
     assert len(items) == 1
@@ -44,16 +39,21 @@ def test_fetch_rss(monkeypatch):
 
 def test_fetch_arxiv(monkeypatch):
     feed = {"url": "http://example.com/arxiv", "name": "ArxivFeed"}
-    entry = {
+    paper = {
         "title": "Paper",
         "link": "https://arxiv.org/abs/1234",
         "summary": "Abstract",
         "published": "2023-12-31T12:00:00Z",
     }
-    monkeypatch.setattr(feedparser, "parse", lambda url: _parsed([entry]))
+
+    async def fake_call(tool, params):
+        assert tool == "search_papers"
+        return {"papers": [paper]}
+
     registry.clear()
     load_plugins(["signalai.sources.arxiv:ArxivSource"])
     src = registry["arxiv"]()
+    monkeypatch.setattr("signalai.sources.arxiv.call_tool", fake_call)
     parsed = src.fetch(feed)
     items = src.parse(parsed, feed)
     assert len(items) == 1
@@ -68,7 +68,7 @@ def test_fetch_arxiv(monkeypatch):
 
 
 def test_fetch_github_releases(monkeypatch):
-    feed = {"url": "http://example.com/api", "name": "Repo"}
+    feed = {"url": "https://github.com/org/repo", "name": "Repo"}
     release = {
         "name": "v1",
         "html_url": "https://github.com/org/repo/releases/v1",
@@ -76,17 +76,14 @@ def test_fetch_github_releases(monkeypatch):
         "published_at": "2024-02-02T02:00:00Z",
     }
 
-    class Response:
-        def json(self):
-            return [release]
+    async def fake_call(tool, params):
+        assert tool == "list_releases"
+        return {"releases": [release]}
 
-        def raise_for_status(self):
-            pass
-
-    monkeypatch.setattr(requests, "get", lambda url, timeout: Response())
     registry.clear()
     load_plugins(["signalai.sources.github:GitHubSource"])
     src = registry["github_releases"]()
+    monkeypatch.setattr("signalai.sources.github.call_tool", fake_call)
     data = src.fetch(feed)
     items = src.parse(data, feed)
     assert len(items) == 1

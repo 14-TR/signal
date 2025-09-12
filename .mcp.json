@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "rss": { "command": "npx", "args": ["rss-mcp"] },
+    "arxiv": { "command": "uv", "args": ["tool", "run", "arxiv-mcp-server"] },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run", "--rm",
+        "-e", "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT}",
+        "ghcr.io/github/github-mcp-server"
+      ]
+    }
+  }
+}
+
