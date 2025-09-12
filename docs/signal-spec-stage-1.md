@@ -20,12 +20,23 @@ Build a minimal, reliable pipeline that gathers AI-related sources, ranks them b
 An array of objects with a strict `type`:
 ```json
 [
-  {"type": "rss", "name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml"},
-  {"type": "rss", "name": "DeepMind", "url": "https://deepmind.google/discover/rss.xml"},
   {"type": "rss", "name": "Anthropic", "url": "https://www.anthropic.com/news/rss.xml"},
+  {"type": "rss", "name": "Cohere", "url": "https://txt.cohere.com/feed"},
+  {"type": "rss", "name": "DeepMind", "url": "https://deepmind.google/discover/rss.xml"},
+  {"type": "rss", "name": "EleutherAI", "url": "https://blog.eleuther.ai/rss/"},
+  {"type": "rss", "name": "Google AI Blog", "url": "https://ai.googleblog.com/feeds/posts/default"},
   {"type": "rss", "name": "Hacker News AI", "url": "https://hnrss.org/newest?q=AI%20OR%20LLM%20OR%20agents"},
-  {"type": "github_releases", "name": "HuggingFace Transformers", "url": "https://api.github.com/repos/huggingface/transformers/releases"},
-  {"type": "arxiv", "name": "arXiv cs.AI", "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=25"}
+  {"type": "rss", "name": "Meta AI", "url": "https://ai.meta.com/blog/rss/"},
+  {"type": "rss", "name": "Mistral AI", "url": "https://mistral.ai/feed.xml"},
+  {"type": "rss", "name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml"},
+  {"type": "rss", "name": "Stability AI", "url": "https://stability.ai/blog.rss"},
+  {"type": "github_releases", "name": "HuggingFace Transformers", "url": "https://github.com/huggingface/transformers"},
+  {"type": "github_releases", "name": "LangChain", "url": "https://github.com/langchain-ai/langchain"},
+  {"type": "github_releases", "name": "Llama.cpp", "url": "https://github.com/ggerganov/llama.cpp"},
+  {"type": "github_releases", "name": "vLLM", "url": "https://github.com/vllm-project/vllm"},
+  {"type": "arxiv", "name": "arXiv cs.AI", "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=25"},
+  {"type": "arxiv", "name": "arXiv cs.CL", "url": "https://export.arxiv.org/api/query?search_query=cat:cs.CL&sortBy=submittedDate&sortOrder=descending&max_results=25"},
+  {"type": "arxiv", "name": "arXiv cs.LG", "url": "https://export.arxiv.org/api/query?search_query=cat:cs.LG&sortBy=submittedDate&sortOrder=descending&max_results=25"}
 ]
 ```
 
