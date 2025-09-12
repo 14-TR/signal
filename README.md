@@ -79,6 +79,12 @@ from signalai.sources import load_plugins
 load_plugins(["path.to.module:MySource"])
 ```
 
+## MCP servers
+
+Signal.ai fetches data via [Model Context Protocol](https://modelcontextprotocol.io/) servers. The project root contains a
+`.mcp.json` defining the RSS, arXiv, and GitHub servers used during ingestion. Ensure these servers are available when running
+the CLI.
+
 ## Documentation
 
 See the [Stage‑1 engineering spec](docs/signal-spec-stage-1.md), [reviewer agent spec](docs/reviewer-agent-spec.md), and [status synopsis](docs/status-synopsis.md) for deeper context and design details.

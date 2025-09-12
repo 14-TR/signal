@@ -29,7 +29,7 @@ The workflow is as follows:
 ## 3. Technical Stack
 
 *   **Language**: Python 3
-*   **Core Libraries**: `requests` (for HTTP requests), `feedparser` (for RSS/Atom feeds).
+*   **Core Libraries**: `requests` (for HTTP requests), `modelcontextprotocol` (for MCP clients).
 *   **Data Storage**:
     *   `feeds.json`: Input configuration for data sources.
     *   `sources.json`: Persistent storage of all processed items to handle state and prevent duplicates.
