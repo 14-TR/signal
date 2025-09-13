@@ -16,8 +16,25 @@ export default function ArticleList() {
 
   const stripHtml = (html: string) => html.replace(/<[^>]*>?/gm, "");
 
-  const handleSummaryClick = (level: string, summary: string) => {
-    alert(`${level} summary: ${stripHtml(summary)}`);
+  const handleSummaryClick = async (level: string, summary: string) => {
+    try {
+      const res = await fetch('/api/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ level, text: stripHtml(summary) }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Request failed');
+      }
+
+      const data = await res.json();
+      alert(`${level} summary: ${data.summary}`);
+    } catch (err) {
+      alert(`Error generating ${level.toLowerCase()} summary`);
+    }
   };
 
   return (
