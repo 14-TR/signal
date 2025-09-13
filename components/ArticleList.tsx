@@ -18,7 +18,10 @@ export default function ArticleList() {
 
   const handleSummaryClick = async (level: string, summary: string) => {
     try {
-      const res = await fetch('/api/summarize', {
+      // Use a relative path so deployments with a basePath work correctly
+      // (e.g. GitHub Pages where the app lives under /signal).
+      // An absolute path would ignore the base and lead to 405 errors.
+      const res = await fetch('api/summarize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
