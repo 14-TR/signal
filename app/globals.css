@@ -85,7 +85,8 @@ form button:hover {
 .level-buttons {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
 
 .level-buttons button {

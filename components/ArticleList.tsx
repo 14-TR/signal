@@ -1,3 +1,5 @@
+'use client';
+
 import sources from "../sources.json";
 
 interface Source {
